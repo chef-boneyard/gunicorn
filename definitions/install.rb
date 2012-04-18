@@ -1,9 +1,9 @@
 #
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
 # Cookbook Name:: gunicorn
-# Recipe:: default
+# Definition:: gunicorn_install
 #
-# Copyright 2011, Opscode, Inc.
+# Copyright:: 2011, Opscode, Inc <legal@opscode.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +18,20 @@
 # limitations under the License.
 #
 
-gunicorn_install node["gunicorn"]["virtualenv"]
+define :gunicorn_install do
+  
+  include_recipe 'python'
+
+  if params[:virtualenv]
+    python_virtualenv params[:virtualenv] do
+      action :create
+    end
+  end
+
+  python_pip "gunicorn" do
+    virtualenv params[:virtualenv]
+    action :install
+  end
+
+end
+
