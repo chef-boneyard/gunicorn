@@ -36,7 +36,7 @@ def on_starting(server):
 
 <%- if @server_hooks[:on_reload] %>
 # Called to recycle workers during a reload via SIGHUP
-def on_relaod(server):
+def on_reload(server):
   <%= @server_hooks[:on_reload] %>
 
 <% end %>
