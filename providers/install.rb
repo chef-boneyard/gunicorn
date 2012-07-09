@@ -27,4 +27,6 @@ action :install do
     virtualenv new_resource.virtualenv
     action :install
   end
+
+  new_resource.updated_by_last_action(true)
 end
