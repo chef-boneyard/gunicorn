@@ -48,6 +48,10 @@ VALID_SERVER_HOOK_NAMES = [
   :pre_exec, :pre_request, :post_request, :worker_exit
 ]
 
+def initialize(*args)
+  @action = :create
+end
+
 private
   def self.validate_server_hook_hash_keys(server_hooks)
     server_hooks.keys.reject{|key| VALID_SERVER_HOOK_NAMES.include?(key.to_sym)}.empty?
