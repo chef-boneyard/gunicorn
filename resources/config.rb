@@ -49,6 +49,7 @@ VALID_SERVER_HOOK_NAMES = [
 ]
 
 def initialize(*args)
+  super
   @action = :create
 end
 
