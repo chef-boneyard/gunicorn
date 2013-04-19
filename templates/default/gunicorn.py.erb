@@ -32,15 +32,13 @@ worker_class = "<%= @worker_class %>"
 def on_starting(server):
   <%= @server_hooks[:on_starting] %>
 
-<% end %>
-
+<%- end %>
 <%- if @server_hooks[:on_reload] %>
 # Called to recycle workers during a reload via SIGHUP
 def on_reload(server):
   <%= @server_hooks[:on_reload] %>
 
-<% end %>
-
+<%- end %>
 <%- if @server_hooks[:when_ready] %>
 # What to do after the server starts
 def start_server(server):
@@ -86,5 +84,35 @@ def worker_exit(server, worker):
 <%- if @pid %>
 # Where to drop a pidfile
 pidfile = "<%= @pid %>"
+
+<%- end %>
+<%- if @accesslog %>
+# The access log file to write to.
+accesslog = "<%= @accesslog %>"
+
+<%- end %>
+<%- if @access_log_format %>
+# The access log format.
+access_log_format = "<%= @access_log_format %>"
+
+<%- end %>
+<%- if @errorlog %>
+# The error log file to write to.
+errorlog = "<%= @errorlog %>"
+
+<%- end %>
+<%- if @loglevel %>
+# The granularity of error log outputs.
+loglevel = "<%= @loglevel %>"
+
+<%- end %>
+<%- if @logger_class %>
+# The logger you want to use to log events in gunicorn.
+logger_class = "<%= @logger_class %>"
+
+<%- end %>
+<%- if @logconfig %>
+# The log config file to use.
+logconfig = "<%= @logconfig %>"
 
 <%- end %>
