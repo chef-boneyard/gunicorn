@@ -41,7 +41,7 @@ def on_reload(server):
 <%- end %>
 <%- if @server_hooks[:when_ready] %>
 # What to do after the server starts
-def start_server(server):
+def when_ready(server):
     <%= @server_hooks[:when_ready] %>
 
 <%- end %>
