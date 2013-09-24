@@ -18,15 +18,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# This provider uses the "subresources" notifier pattern defined here:
+#
+# https://gist.github.com/d85be145f3ff824ccc07
+# http://realityforge.org/code/2012/07/17/lwrp-notify-on-changed-resources.html
+
+include ChefExt::RecipeEval
+
 action :install do
-  python_virtualenv new_resource.virtualenv do
-    action :create
-  end if new_resource.virtualenv
-
-  python_pip "gunicorn" do
-    virtualenv new_resource.virtualenv
-    action :install
+  recipe_eval do
+    python_virtualenv new_resource.virtualenv do
+      action :create
+    end if new_resource.virtualenv
+  
+    python_pip "gunicorn" do
+      virtualenv new_resource.virtualenv
+      action :install
+    end
   end
-
-  new_resource.updated_by_last_action(true)
 end
