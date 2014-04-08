@@ -40,6 +40,10 @@ attribute :errorlog, :kind_of => String, :default => nil
 attribute :loglevel, :kind_of => String, :default => nil
 attribute :logger_class, :kind_of => String, :default => nil
 attribute :logconfig, :kind_of => String, :default => nil
+attribute :secure_scheme_headers, :kind_of => Hash, :default => nil
+attribute :forwarded_allow_ips, :kind_of => String, :default => nil
+attribute :proc_name, :kind_of => String, :default => nil
+
 
 attribute :server_hooks, :kind_of => Hash, :default => {}, \
     :callbacks => {
