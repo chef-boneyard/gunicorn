@@ -116,3 +116,22 @@ logger_class = "<%= @logger_class %>"
 logconfig = "<%= @logconfig %>"
 
 <%- end %>
+<%- if @secure_scheme_headers %>
+# A dictionary containing headers and values that the front-end proxy uses to indicate HTTPS requests.
+secure_scheme_headers = {
+  <%- @secure_scheme_headers.each do |header,value| %>
+  "<%= header %>": "<%= value%>",
+  <%- end %>
+}
+
+<%- end %>
+<%- if @forwarded_allow_ips %>
+# Front-end’s IPs from which allowed to handle set secure headers. (comma separate).
+forwarded_allow_ips = "<%= @forwarded_allow_ips %>"
+
+<%- end %>
+<%- if @proc_name %>
+# A base to use with setproctitle for process naming.
+proc_name = "<%= @proc_name %>"
+
+<%- end %>
