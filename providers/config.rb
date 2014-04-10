@@ -23,7 +23,7 @@ action :create do
   Chef::Log.info("Creating #{@new_resource} at #{@new_resource.path}")  unless exists?
 
   template_variables = {}
-  %w{listen backlog preload_app worker_processes worker_class worker_timeout worker_keepalive worker_max_requests server_hooks pid accesslog access_log_format errorlog loglevel logger_class logconfig}.each do |a|
+  %w{listen backlog preload_app worker_processes worker_class worker_timeout worker_keepalive worker_max_requests server_hooks pid accesslog access_log_format errorlog loglevel logger_class logconfig secure_scheme_headers forwarded_allow_ips proc_name}.each do |a|
     template_variables[a.to_sym] = new_resource.send(a)
   end
 
