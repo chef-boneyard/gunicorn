@@ -3,6 +3,12 @@ gunicorn Cookbook CHANGELOG
 This file is used to list changes made in each version of the gunicorn cookbook.
 
 
+v1.1.4 (2014-05-28)
+-------------------
+
+[COOK-4530] in gunicorn config lwrp enable options for secure headers and proc-name
+
+
 v1.1.2
 ------
 ### Improvement
