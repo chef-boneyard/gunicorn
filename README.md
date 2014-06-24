@@ -61,7 +61,7 @@ Creates a Gunicorn configuration file at the path specified.  Meant to be deploy
 - logger_class: The logger you want to use to log events in gunicorn.
 - logconfig: The log config file to use.
 - secure_scheme_headers: A hash containing headers and values that the front-end proxy uses to indicate HTTPS requests.
-- forwarded_allow_ips: Front-end’s IPs from which allowed to handle set secure headers. (comma separate).
+- forwarded_allow_ips: Front-end's IPs from which allowed to handle set secure headers. (comma separate).
 - proc_name: A base to use with setproctitle for process naming.
 
 
