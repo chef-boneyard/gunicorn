@@ -3,6 +3,12 @@ gunicorn Cookbook CHANGELOG
 This file is used to list changes made in each version of the gunicorn cookbook.
 
 
+v1.1.6 (2014-06-24)
+-------------------
+
+- Removes smart quotes to prevent Encoding::InvalidByteSequenceError errors.
+
+
 v1.1.4 (2014-05-28)
 -------------------
 
