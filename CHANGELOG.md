@@ -1,7 +1,6 @@
-gunicorn Cookbook CHANGELOG
-===========================
-This file is used to list changes made in each version of the gunicorn cookbook.
-
+v1.2.0 (2014-09-18)
+-------------------
+- [#11] Added ChefSpec matchers, Berksfile and Gemfile for testing dependencies
 
 v1.1.6 (2014-06-24)
 -------------------
