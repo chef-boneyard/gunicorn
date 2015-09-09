@@ -1,13 +1,7 @@
-Description
-===========
-
-Installs and configures the latest version of Gunicorn (via pip), aka `Green Unicorn`, a Python WSGI HTTP Server for UNIX. It's a pre-fork worker model ported from Ruby's Unicorn project.  Includes an LWRP for managing Gunicorn config files.  By default Gunicorn is installed system-wide but you can target a particular `virtualenv` by overriding the `node["gunicorn"]["virtualenv"]` attribute.
-
-Requirements
-============
-
-Platform
---------
+gunicorn Cookbook
+=================
+[![Build Status](https://travis-ci.org/chef-cookbooks/gunicorn.svg?branch=master)](http://travis-ci.org/chef-cookbooks/gunicorn)
+[![Cookbook Version](https://img.shields.io/cookbook/v/gunicorn.svg)](https://supermarket.chef.io/cookbooks/gunicorn)
 
 * Debian, Ubuntu
 * CentOS, Red Hat, Fedora
@@ -96,7 +90,8 @@ License and Author
 
 Author:: Seth Chisamore (<schisamo@opscode.com>)
 
-Copyright:: 2011, Opscode, Inc
+```text
+Copyright 2011-2015, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -109,3 +104,4 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+```
