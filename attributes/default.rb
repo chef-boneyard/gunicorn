@@ -18,4 +18,4 @@
 # limitations under the License.
 #
 
-default["gunicorn"]["virtualenv"] = nil
+default['gunicorn']['virtualenv'] = nil

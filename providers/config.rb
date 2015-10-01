@@ -19,11 +19,10 @@
 #
 
 action :create do
-
-  Chef::Log.info("Creating #{@new_resource} at #{@new_resource.path}")  unless exists?
+  Chef::Log.info("Creating #{@new_resource} at #{@new_resource.path}") unless exists?
 
   template_variables = {}
-  %w{listen backlog preload_app worker_processes worker_class worker_timeout worker_keepalive worker_max_requests server_hooks pid accesslog access_log_format errorlog loglevel logger_class logconfig secure_scheme_headers forwarded_allow_ips proc_name}.each do |a|
+  %w(listen backlog preload_app worker_processes worker_class worker_timeout worker_keepalive worker_max_requests server_hooks pid accesslog access_log_format errorlog loglevel logger_class logconfig secure_scheme_headers forwarded_allow_ips proc_name).each do |a|
     template_variables[a.to_sym] = new_resource.send(a)
   end
 
@@ -39,7 +38,7 @@ action :create do
   t = template new_resource.path do
     source new_resource.template
     cookbook new_resource.cookbook
-    mode "0644"
+    mode '0644'
     owner new_resource.owner if new_resource.owner
     group new_resource.group if new_resource.group
     variables template_variables
@@ -55,7 +54,7 @@ action :delete do
       ::File.delete(@new_resource.path)
       new_resource.updated_by_last_action(true)
     else
-      raise "Cannot delete #{@new_resource} at #{@new_resource.path}!"
+      fail "Cannot delete #{@new_resource} at #{@new_resource.path}!"
     end
   end
 end
@@ -67,6 +66,7 @@ def load_current_resource
 end
 
 private
-  def exists?
-    ::File.exist?(@current_resource.path)
-  end
+
+def exists?
+  ::File.exist?(@current_resource.path)
+end
