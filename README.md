@@ -3,6 +3,7 @@ gunicorn Cookbook
 [![Build Status](https://travis-ci.org/chef-cookbooks/gunicorn.svg?branch=master)](http://travis-ci.org/chef-cookbooks/gunicorn)
 [![Cookbook Version](https://img.shields.io/cookbook/v/gunicorn.svg)](https://supermarket.chef.io/cookbooks/gunicorn)
 
+Installs and configures the latest version of Gunicorn (via pip), aka `Green Unicorn`, a Python WSGI HTTP Server for UNIX. It's a pre-fork worker model ported from Ruby's Unicorn project.  Includes an LWRP for managing Gunicorn config files.  By default Gunicorn is installed system-wide but you can target a particular `virtualenv` by overriding the `node["gunicorn"]["virtualenv"]` attribute.
 
 Requirements
 ------------
