@@ -26,7 +26,7 @@ Resource/Provider
 
 This cookbook includes LWRPs for managing gunicorn config files.
 
-### `gunicorn_config`
+### gunicorn_config
 
 Creates a Gunicorn configuration file at the path specified.  Meant to be deployed with a service init scheme/supervisor such as runit.  Please see the `appliation::gunicorn` recipe for a complete working example. In depth information about Gunicorn's configuration values can be [found in the Gunicorn documentation](http://gunicorn.org/configure.html).
 
