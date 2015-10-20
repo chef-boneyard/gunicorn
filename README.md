@@ -3,35 +3,39 @@ gunicorn Cookbook
 [![Build Status](https://travis-ci.org/chef-cookbooks/gunicorn.svg?branch=master)](http://travis-ci.org/chef-cookbooks/gunicorn)
 [![Cookbook Version](https://img.shields.io/cookbook/v/gunicorn.svg)](https://supermarket.chef.io/cookbooks/gunicorn)
 
-* Debian, Ubuntu
-* CentOS, Red Hat, Fedora
 
-Cookbooks
----------
+Requirements
+------------
+#### Platforms
+- Debian/Ubuntu
+- RHEL/CentOS/Scientific/Amazon/Oracle
 
-* python
+#### Chef
+- Chef 11+
+
+#### Cookbooks
+- python
 
 Attributes
-==========
+----------
 
 * `node["gunicorn"]["virtualenv"]` - the virtualenv you want to target Gunicorn installation into.  The virtualenv will be created if it doesn't exist.
 
 Resource/Provider
-=================
+-----------------
 
 This cookbook includes LWRPs for managing gunicorn config files.
 
-`gunicorn_config`
------------------
+### `gunicorn_config`
 
 Creates a Gunicorn configuration file at the path specified.  Meant to be deployed with a service init scheme/supervisor such as runit.  Please see the `appliation::gunicorn` recipe for a complete working example. In depth information about Gunicorn's configuration values can be [found in the Gunicorn documentation](http://gunicorn.org/configure.html).
 
-# Actions
+#### Actions
 
 - :create: create a Gunicorn configuration file.
 - :delete: delete an existing Gunicorn configuration file.
 
-# Attribute Parameters
+#### Attribute Parameters
 
 - path: name attribute. The path where the configuration file will be created
 - template: template to use when rendering the configuration file. default is `gunicorn.py.erb` (part of this cookbook)
@@ -59,7 +63,7 @@ Creates a Gunicorn configuration file at the path specified.  Meant to be deploy
 - proc_name: A base to use with setproctitle for process naming.
 
 
-# Example
+#### Example
 
     # create a config with the default values
     gunicorn_config "/etc/gunicorn/myapp.py" do
@@ -81,18 +85,19 @@ Creates a Gunicorn configuration file at the path specified.  Meant to be deploy
     end
 
 Usage
-=====
+-----
 
 Simply include the recipe where you want Gunicorn installed.
 
-License and Author
-==================
 
-Author:: Seth Chisamore (<schisamo@opscode.com>)
+License & Authors
+-----------------
 
-```text
-Copyright 2011-2015, Chef Software, Inc.
+**Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
 
+**Copyright:** 2011-2015, Chef Software, Inc.
+
+```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
