@@ -56,7 +56,7 @@ attribute :pid, kind_of: String
 VALID_SERVER_HOOK_NAMES = [
   :on_starting, :on_reload, :when_ready, :pre_fork, :post_fork,
   :pre_exec, :pre_request, :post_request, :worker_exit
-]
+].freeze
 
 def initialize(*args)
   super

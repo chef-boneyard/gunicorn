@@ -18,6 +18,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+use_inline_resources
+
 action :install do
   python_virtualenv new_resource.virtualenv do
     action :create

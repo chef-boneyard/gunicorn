@@ -18,6 +18,8 @@
 # limitations under the License.
 #
 
+use_inline_resources
+
 action :create do
   Chef::Log.info("Creating #{@new_resource} at #{@new_resource.path}") unless exists?
 
@@ -54,7 +56,7 @@ action :delete do
       ::File.delete(@new_resource.path)
       new_resource.updated_by_last_action(true)
     else
-      fail "Cannot delete #{@new_resource} at #{@new_resource.path}!"
+      raise "Cannot delete #{@new_resource} at #{@new_resource.path}!"
     end
   end
 end
