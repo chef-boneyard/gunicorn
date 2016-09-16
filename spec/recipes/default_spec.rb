@@ -5,7 +5,7 @@ describe 'gunicorn::default' do
 
   cached(:chef_run) do
     ChefSpec::ServerRunner.new do |node|
-      node.set['gunicorn']['virtualenv'] = gunicorn_virtualenv
+      node.normal['gunicorn']['virtualenv'] = gunicorn_virtualenv
     end.converge(described_recipe)
   end
 

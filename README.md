@@ -12,7 +12,7 @@ Requirements
 - RHEL/CentOS/Scientific/Amazon/Oracle
 
 #### Chef
-- Chef 11+
+- Chef 12.1+
 
 #### Cookbooks
 - python
@@ -96,7 +96,7 @@ License & Authors
 
 **Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
 
-**Copyright:** 2011-2015, Chef Software, Inc.
+**Copyright:** 2011-2016, Chef Software, Inc.
 
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
