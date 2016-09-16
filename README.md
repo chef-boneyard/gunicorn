@@ -1,35 +1,35 @@
-gunicorn Cookbook
-=================
-[![Build Status](https://travis-ci.org/chef-cookbooks/gunicorn.svg?branch=master)](http://travis-ci.org/chef-cookbooks/gunicorn)
-[![Cookbook Version](https://img.shields.io/cookbook/v/gunicorn.svg)](https://supermarket.chef.io/cookbooks/gunicorn)
+# gunicorn Cookbook
 
-Installs and configures the latest version of Gunicorn (via pip), aka `Green Unicorn`, a Python WSGI HTTP Server for UNIX. It's a pre-fork worker model ported from Ruby's Unicorn project.  Includes an LWRP for managing Gunicorn config files.  By default Gunicorn is installed system-wide but you can target a particular `virtualenv` by overriding the `node["gunicorn"]["virtualenv"]` attribute.
+[![Build Status](https://travis-ci.org/chef-cookbooks/gunicorn.svg?branch=master)](http://travis-ci.org/chef-cookbooks/gunicorn) [![Cookbook Version](https://img.shields.io/cookbook/v/gunicorn.svg)](https://supermarket.chef.io/cookbooks/gunicorn)
 
-Requirements
-------------
-#### Platforms
+Installs and configures the latest version of Gunicorn (via pip), aka `Green Unicorn`, a Python WSGI HTTP Server for UNIX. It's a pre-fork worker model ported from Ruby's Unicorn project. Includes an LWRP for managing Gunicorn config files. By default Gunicorn is installed system-wide but you can target a particular `virtualenv` by overriding the `node["gunicorn"]["virtualenv"]` attribute.
+
+## Requirements
+
+### Platforms
+
 - Debian/Ubuntu
 - RHEL/CentOS/Scientific/Amazon/Oracle
 
-#### Chef
+### Chef
+
 - Chef 12.1+
 
-#### Cookbooks
+### Cookbooks
+
 - python
 
-Attributes
-----------
+## Attributes
 
-* `node["gunicorn"]["virtualenv"]` - the virtualenv you want to target Gunicorn installation into.  The virtualenv will be created if it doesn't exist.
+- `node["gunicorn"]["virtualenv"]` - the virtualenv you want to target Gunicorn installation into. The virtualenv will be created if it doesn't exist.
 
-Resource/Provider
------------------
+## Resource/Provider
 
 This cookbook includes LWRPs for managing gunicorn config files.
 
 ### gunicorn_config
 
-Creates a Gunicorn configuration file at the path specified.  Meant to be deployed with a service init scheme/supervisor such as runit.  Please see the `appliation::gunicorn` recipe for a complete working example. In depth information about Gunicorn's configuration values can be [found in the Gunicorn documentation](http://gunicorn.org/#docs).
+Creates a Gunicorn configuration file at the path specified. Meant to be deployed with a service init scheme/supervisor such as runit. Please see the `appliation::gunicorn` recipe for a complete working example. In depth information about Gunicorn's configuration values can be [found in the Gunicorn documentation](http://gunicorn.org/#docs).
 
 #### Actions
 
@@ -63,38 +63,36 @@ Creates a Gunicorn configuration file at the path specified.  Meant to be deploy
 - forwarded_allow_ips: Front-end's IPs from which allowed to handle set secure headers. (comma separate).
 - proc_name: A base to use with setproctitle for process naming.
 
-
 #### Example
 
-    # create a config with the default values
-    gunicorn_config "/etc/gunicorn/myapp.py" do
-      action :create
-    end
+```
+# create a config with the default values
+gunicorn_config "/etc/gunicorn/myapp.py" do
+  action :create
+end
 
-    # tweak some worker related values...we're web scale baby
-    gunicorn_config "/etc/gunicorn/myapp.py" do
-      worker_processes 8
-      backlog 4096
-      action :create
-    end
+# tweak some worker related values...we're web scale baby
+gunicorn_config "/etc/gunicorn/myapp.py" do
+  worker_processes 8
+  backlog 4096
+  action :create
+end
 
-    # use the 'pre_fork' server hook to
-    # sleep for a second before forking
-    gunicorn_config "/etc/gunicorn/myapp.py" do
-      server_hooks({:pre_fork => 'import time;time.sleep(1)'})
-      action :create
-    end
+# use the 'pre_fork' server hook to
+# sleep for a second before forking
+gunicorn_config "/etc/gunicorn/myapp.py" do
+  server_hooks({:pre_fork => 'import time;time.sleep(1)'})
+  action :create
+end
+```
 
-Usage
------
+## Usage
 
 Simply include the recipe where you want Gunicorn installed.
 
+## License & Authors
 
-License & Authors
------------------
-
-**Author:** Cookbook Engineering Team (<cookbooks@chef.io>)
+**Author:** Cookbook Engineering Team ([cookbooks@chef.io](mailto:cookbooks@chef.io))
 
 **Copyright:** 2011-2016, Chef Software, Inc.
 
