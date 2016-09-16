@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of the gunicorn cookbook.
 
+## 2.0.0 (2016-09-16)
+- Fix doc link in the readme
+- Resolve rubocop and foodcritic warnings
+- Testing updates
+- Require Chef 12.1+
+
 ## v1.2.1 (2015-10-20)
 
 - Added source_url and issues_url to the metadata
