@@ -1,9 +1,9 @@
 #
 # Author:: Seth Chisamore (<schisamo@opscode.com>)
-# Cookbook Name:: gunicorn
+# Cookbook:: gunicorn
 # Resource:: config
 #
-# Copyright:: 2011, Opscode, Inc <legal@opscode.com>
+# Copyright:: 2011-2016, Chef Software, Inc <legal@opscode.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ attribute :proc_name, kind_of: String, default: nil
 
 attribute :server_hooks, kind_of: Hash, default: {}, \
                          callbacks: {
-                           'should contain a valid gunicorn server hook name' => ->(hooks) { Chef::Resource::GunicornConfig.validate_server_hook_hash_keys(hooks) }
+                           'should contain a valid gunicorn server hook name' => ->(hooks) { Chef::Resource::GunicornConfig.validate_server_hook_hash_keys(hooks) },
                          }
 
 attribute :owner, regex: Chef::Config[:user_valid_regex]

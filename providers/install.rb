@@ -1,9 +1,9 @@
 #
 # Author:: Joshua Timberman <joshua@chef.io>
-# Cookbook Name:: gunicorn
+# Cookbook:: gunicorn
 # Provider:: install
 #
-# Copyright:: Copyright (c) 2012-2015, Chef Software, Inc <legal@chef.io>
+# Copyright:: 2012-2016, Chef Software, Inc <legal@chef.io>
 # License:: Apache License, Version 2.0
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
