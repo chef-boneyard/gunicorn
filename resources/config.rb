@@ -19,6 +19,7 @@
 #
 
 actions :create, :delete
+default_action :create
 
 attribute :path, kind_of: String, name_attribute: true
 attribute :template, kind_of: String, default: 'gunicorn.py.erb'
@@ -57,11 +58,6 @@ VALID_SERVER_HOOK_NAMES = [
   :on_starting, :on_reload, :when_ready, :pre_fork, :post_fork,
   :pre_exec, :pre_request, :post_request, :worker_exit
 ].freeze
-
-def initialize(*args)
-  super
-  @action = :create
-end
 
 private
 

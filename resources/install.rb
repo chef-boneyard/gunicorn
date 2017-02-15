@@ -19,10 +19,6 @@
 # limitations under the License.
 #
 actions :install
+default_action :install
 
 attribute :virtualenv, kind_of: String, default: nil
-
-def initialize(*args)
-  super
-  @action = :install
-end
