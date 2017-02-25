@@ -25,7 +25,7 @@ attribute :path, kind_of: String, name_attribute: true
 attribute :template, kind_of: String, default: 'gunicorn.py.erb'
 attribute :cookbook, kind_of: String, default: 'gunicorn'
 
-attribute :listen, kind_of: String, default: '0.0.0.0:8000'
+attribute :listen, kind_of: [String, Array], default: '0.0.0.0:8000'
 attribute :backlog, kind_of: Integer, default: 2048
 attribute :preload_app, kind_of: [TrueClass, FalseClass], default: false
 
@@ -34,6 +34,14 @@ attribute :worker_class, kind_of: String, default: 'sync'
 attribute :worker_timeout, kind_of: Integer, default: 60
 attribute :worker_keepalive, kind_of: Integer, default: 2
 attribute :worker_max_requests, kind_of: Integer, default: 0
+attribute :worker_max_requests_jitter, kind_of: Integer, default: 0
+attribute :worker_connections, kind_of: Integer, default: 1000
+attribute :worker_threads, kind_of: Integer, default: 1
+attrubyte :worker_graceful_timeout, kind_of: Integer, default: 30
+
+attribute :limit_request_line, kind_of: Integer, default: 4094
+attribute :limit_request_fields, kind_of: Integer, default: 100
+attribute :limit_request_field_size, kind_of: Integer, default: 8190
 
 attribute :accesslog, kind_of: String, default: nil
 attribute :access_log_format, kind_of: String, default: nil
@@ -45,10 +53,12 @@ attribute :secure_scheme_headers, kind_of: Hash, default: nil
 attribute :forwarded_allow_ips, kind_of: String, default: nil
 attribute :proc_name, kind_of: String, default: nil
 
-attribute :server_hooks, kind_of: Hash, default: {}, \
+attribute :server_hooks, kind_of: Hash, default: Hash.new, \
                          callbacks: {
                            'should contain a valid gunicorn server hook name' => ->(hooks) { Chef::Resource::GunicornConfig.validate_server_hook_hash_keys(hooks) },
                          }
+
+attribute :raw_env, kind_of: Array, default: nil
 
 attribute :owner, regex: Chef::Config[:user_valid_regex]
 attribute :group, regex: Chef::Config[:group_valid_regex]
