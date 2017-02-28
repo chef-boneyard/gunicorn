@@ -4,19 +4,18 @@
 ##
 
 # What ports/sockets to listen on, and what options for them.
+<%- if @listen.is_a?(Array) %>
+bind = [
+<%- @listen.each do | listen_item | %>
+    "<%= listen_item %>",
+<%- end %>
+]
+<%- else %>
 bind = "<%= @listen %>"
+<%- end %>
 
 # The maximum number of pending connections
 backlog = <%= @backlog %>
-
-# What the timeout for killing busy workers is, in seconds
-timeout = <%= @worker_timeout %>
-
-# How long to wait for requests on a Keep-Alive connection, in seconds
-keepalive = <%= @worker_keepalive %>
-
-# The maxium number of requests a worker will process before restarting
-max_requests = <%= @worker_max_requests %>
 
 # Whether the app should be pre-loaded
 preload_app = <%= @preload_app.to_s.capitalize %>
@@ -27,7 +26,55 @@ workers = <%= @worker_processes %>
 # Type of worker to use
 worker_class = "<%= @worker_class %>"
 
-<%- if @server_hooks[:on_starting] %>
+# What the timeout for killing busy workers is, in seconds
+timeout = <%= @worker_timeout %>
+
+# How long to wait for requests on a Keep-Alive connection, in seconds
+keepalive = <%= @worker_keepalive %>
+
+# The maxium number of requests a worker will process before restarting
+max_requests = <%= @worker_max_requests %>
+
+<%- if @worker_threads %>
+# Number of threads per worker
+threads = <%= @worker_threads %>
+
+<%- end %>
+<%- if @worker_max_requests_jitter %>
+# The maximum jitter to add to the max_requests setting.
+max_requests_jitter = <%= @worker_max_requests_jitter %>
+
+<%- end %>
+
+<%- if @worker_connections %>
+# The maximum number of simultaneous clients.
+worker_connections = <%= @worker_connections %>
+
+<%- end %>
+<%- if @worker_graceful_timeout %>
+# Timeout for graceful workers restart.
+graceful_timeout = <%= @worker_graceful_timeout %>
+
+<%- end %>
+<%- if @limit_request_line %>
+# The maximum size of HTTP request line in bytes.
+limit_request_line = <%= @limit_request_line %>
+
+<%- end %>
+<%- if @limit_request_fields %>
+# Limit the number of HTTP headers fields in a request.
+limit_request_fields = <%= @limit_request_fields %>
+
+<%- end %>
+<%- if @limit_request_field_size %>
+# Limit the allowed size of an HTTP request header field.
+limit_request_field_size = <%= @limit_request_field_size %>
+
+<%- end %>
+<%-
+unless @server_hooks.nil?
+  if @server_hooks[:on_starting]
+%>
 # What to do before the master process is initialized
 def on_starting(server):
   <%= @server_hooks[:on_starting] %>
@@ -80,7 +127,10 @@ def post_request(worker, req):
 def worker_exit(server, worker):
     <%= @server_hooks[:worker_exit] %>
 
-<%- end %>
+<%-
+  end
+end
+%>
 <%- if @pid %>
 # Where to drop a pidfile
 pidfile = "<%= @pid %>"
@@ -133,5 +183,14 @@ forwarded_allow_ips = "<%= @forwarded_allow_ips %>"
 <%- if @proc_name %>
 # A base to use with setproctitle for process naming.
 proc_name = "<%= @proc_name %>"
+
+<%- end %>
+<%- if @raw_env %>
+# OS-level environment variables
+raw_env = [
+<%- @raw_env.each do | raw_var | %>
+  '<%= raw_var %>',
+<%- end %>
+]
 
 <%- end %>
