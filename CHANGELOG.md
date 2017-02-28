@@ -2,7 +2,21 @@
 
 This file is used to list changes made in each version of the gunicorn cookbook.
 
+## 2.1.0 (2017-02-28)
+
+Added the following options to the configuration resource and template:
+
+- raw_env
+- worker_threads
+- worker_max_requests_jitter
+- worker_graceful_timeout
+- limit_request_line
+- limit_request_fields
+- limit_request_field_size
+
+
 ## 2.0.0 (2016-09-16)
+
 - Fix doc link in the readme
 - Resolve rubocop and foodcritic warnings
 - Testing updates
