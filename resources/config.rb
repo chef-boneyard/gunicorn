@@ -53,7 +53,7 @@ attribute :secure_scheme_headers, kind_of: Hash, default: nil
 attribute :forwarded_allow_ips, kind_of: String, default: nil
 attribute :proc_name, kind_of: String, default: nil
 
-attribute :server_hooks, kind_of: Hash, default: Hash.new, \
+attribute :server_hooks, kind_of: Hash, default: nil, \
                          callbacks: {
                            'should contain a valid gunicorn server hook name' => ->(hooks) { Chef::Resource::GunicornConfig.validate_server_hook_hash_keys(hooks) },
                          }

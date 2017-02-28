@@ -71,7 +71,10 @@ limit_request_fields = <%= @limit_request_fields %>
 limit_request_field_size = <%= @limit_request_field_size %>
 
 <%- end %>
-<%- if @server_hooks[:on_starting] %>
+<%-
+unless @server_hooks.nil?
+  if @server_hooks[:on_starting]
+%>
 # What to do before the master process is initialized
 def on_starting(server):
   <%= @server_hooks[:on_starting] %>
@@ -124,7 +127,10 @@ def post_request(worker, req):
 def worker_exit(server, worker):
     <%= @server_hooks[:worker_exit] %>
 
-<%- end %>
+<%-
+  end
+end
+%>
 <%- if @pid %>
 # Where to drop a pidfile
 pidfile = "<%= @pid %>"
