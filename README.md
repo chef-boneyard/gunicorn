@@ -4,6 +4,10 @@
 
 Installs and configures the latest version of Gunicorn (via pip), aka `Green Unicorn`, a Python WSGI HTTP Server for UNIX. It's a pre-fork worker model ported from Ruby's Unicorn project. Includes an LWRP for managing Gunicorn config files. By default Gunicorn is installed system-wide but you can target a particular `virtualenv` by overriding the `node["gunicorn"]["virtualenv"]` attribute.
 
+## Deprecation notice
+
+This cookbook has been deprecated. It requires a major rewrite to work on current Chef. We have decided to deprecate it so we can focus our efforts on complex cookbooks that provide more value to the overall Chef community. 
+
 ## Requirements
 
 ### Platforms
